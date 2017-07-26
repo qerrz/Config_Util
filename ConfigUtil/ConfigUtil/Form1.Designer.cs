@@ -48,12 +48,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(334, 137);
+            this.label1.Location = new System.Drawing.Point(355, 150);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "By MM - Queris";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -94,7 +93,6 @@
             this.label5.Size = new System.Drawing.Size(37, 16);
             this.label5.TabIndex = 4;
             this.label5.Text = "Hasło";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -127,7 +125,6 @@
             this.textBox1.Size = new System.Drawing.Size(100, 16);
             this.textBox1.TabIndex = 7;
             this.textBox1.Text = "SampleData";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
@@ -152,7 +149,6 @@
             this.textBox3.Size = new System.Drawing.Size(100, 16);
             this.textBox3.TabIndex = 9;
             this.textBox3.Text = "SampleData";
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox4
             // 
@@ -182,27 +178,27 @@
             // 
             this.button1.Location = new System.Drawing.Point(336, 30);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(96, 23);
             this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
+            this.button1.Text = "Edycja";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(336, 59);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(96, 23);
             this.button2.TabIndex = 13;
-            this.button2.Text = "button2";
+            this.button2.Text = "Zapisz zmiany";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(336, 88);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(96, 23);
             this.button3.TabIndex = 14;
-            this.button3.Text = "button3";
+            this.button3.Text = "Testuj";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // Main_Project
@@ -229,7 +225,6 @@
             this.Font = new System.Drawing.Font("Myriad Hebrew", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Name = "Main_Project";
             this.Text = "Config Utility";
-            this.Load += new System.EventHandler(this.Main_Project_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

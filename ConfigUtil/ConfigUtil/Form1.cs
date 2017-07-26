@@ -16,30 +16,9 @@ namespace ConfigUtil
         {
             InitializeComponent();
         }
+    }
+    public class MainFunctions
+    {
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Main_Project_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
