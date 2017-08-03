@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EditWindowWPF.Properties
+namespace Config_Util.Properties
 {
 
 

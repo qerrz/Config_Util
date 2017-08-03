@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79ADB657-0A34-4A06-ADCD-8E2B52AAD8D6}</ProjectGuid>
+    <ProjectGuid>{F8AC36AD-6335-44E7-9CBA-A4E5023E961E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EditWindowWPF</RootNamespace>
-    <AssemblyName>EditWindowWPF</AssemblyName>
+    <RootNamespace>Config_Util</RootNamespace>
+    <AssemblyName>Config_Util</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
