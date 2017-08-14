@@ -22,6 +22,18 @@ namespace Config_Util
 {
     public partial class MainWindow
     {
+        static string CMMSPathVar = string.Empty;
+        bool GetServiceSuccess = false;
+        string ServiceConfigPath = string.Empty;
+        string RestConfigPath = string.Empty;
+        string WebConfigPath = string.Empty;
+        string ClientConfigPath = string.Empty;
+        string ExePath = string.Empty;
+        string ServicePath = string.Empty;
+        string RestPath = string.Empty;
+        string WebPath = string.Empty;
+        string ClientPath = string.Empty;
+        
         public void LoadFilesButton_Click(object sender, RoutedEventArgs e)
         {
             bool GetServiceFail = false;
@@ -36,38 +48,28 @@ namespace Config_Util
             {
                 if (Directory.Exists(CMMSPathVar))
                 {
-                    bool GetServiceSuccess = false;
-                    string ServiceConfigPath = string.Empty;
-                    string RestConfigPath = string.Empty;
-                    string WebConfigPath = string.Empty;
-                    string ClientConfigPath = string.Empty;
-                    string ExePath = string.Empty;
-                    string ServicePath = string.Empty;
-                    string RestPath = string.Empty;
-                    string WebPath = string.Empty;
-                    string ClientPath = string.Empty;
-                    string NewServicePath = CMMSPathVar + "\\Service\\";
-                    string OldServicePath = CMMSPathVar + "\\RRM3Services\\";
-                    string NewRestPath = CMMSPathVar + "\\RestService\\";
-                    string OldRestPath = CMMSPathVar + "\\RRM3RestService\\";
-                    string NewWebPath = CMMSPathVar + "\\WebClient\\";
-                    string OldWebPath = CMMSPathVar + "\\RRM3WebClient\\";
-                    string NewClientPath = CMMSPathVar + "\\Client\\";
-                    string OldClientPath = CMMSPathVar + "\\RRM3Client\\";
+                    string NewServicePath = CMMSPathVar + "\\Service";
+                    string OldServicePath = CMMSPathVar + "\\RRM3Services";
+                    string NewRestPath = CMMSPathVar + "\\RestService";
+                    string OldRestPath = CMMSPathVar + "\\RRM3RestService";
+                    string NewWebPath = CMMSPathVar + "\\WebClient";
+                    string OldWebPath = CMMSPathVar + "\\RRM3WebClient";
+                    string NewClientPath = CMMSPathVar + "\\Client";
+                    string OldClientPath = CMMSPathVar + "\\RRM3Client";
                     string NewExePath = CMMSPathVar + "\\Client\\RRM3.exe";
                     string OldExePath = CMMSPathVar + "\\RRM3Client\\RRM3.exe";
-                    string PanelPath = CMMSPathVar + "\\Panel\\";
+                    string PanelPath = CMMSPathVar + "\\Panel";
 
                     if (Directory.Exists(NewServicePath))
                     {
                         ServiceBox.Text = NewServicePath;
-                        ServiceConfigPath = NewServicePath + "Web.config";
+                        ServiceConfigPath = NewServicePath + "\\Web.config";
                         GetServiceSuccess = true;
                     }
                     else if (Directory.Exists(OldServicePath))
                     {
                         ServiceBox.Text = OldServicePath;
-                        ServiceConfigPath = OldServicePath + "Web.config";
+                        ServiceConfigPath = OldServicePath + "\\Web.config";
                         GetServiceSuccess = true;
                     }
                     else
@@ -81,12 +83,12 @@ namespace Config_Util
                         if (Directory.Exists(NewRestPath))
                         {
                             RestBox.Text = NewRestPath;
-                            RestConfigPath = NewRestPath + "Web.config";
+                            RestConfigPath = NewRestPath + "\\Web.config";
                         }
                         else if (Directory.Exists(OldRestPath))
                         {
                             RestBox.Text = NewRestPath;
-                            RestConfigPath = OldRestPath + "Web.config";
+                            RestConfigPath = OldRestPath + "\\Web.config";
                         }
                         else
                         {
@@ -95,12 +97,12 @@ namespace Config_Util
                         if (Directory.Exists(NewWebPath))
                         {
                             WebBox.Text = NewWebPath;
-                            WebConfigPath = NewWebPath + "Web.config";
+                            WebConfigPath = NewWebPath + "\\Web.config";
                         }
                         else if (Directory.Exists(OldWebPath))
                         {
                             WebBox.Text = OldWebPath;
-                            WebConfigPath = OldWebPath + "Web.config";
+                            WebConfigPath = OldWebPath + "\\Web.config";
                         }
                         else
                         {
@@ -109,14 +111,14 @@ namespace Config_Util
                         if (Directory.Exists(NewClientPath))
                         {
                             ClientBox.Text = NewClientPath;
-                            ClientConfigPath = NewClientPath + "RRM3.exe.config";
-                            ExePath = NewClientPath + "RRM3.exe";
+                            ClientConfigPath = NewClientPath + "\\RRM3.exe.config";
+                            ExePath = NewClientPath + "\\RRM3.exe";
                         }
                         else if (Directory.Exists(OldClientPath))
                         {
                             ClientBox.Text = OldClientPath;
-                            ClientConfigPath = OldClientPath + "RRM3.exe.config";
-                            ExePath = OldClientPath + "RRM3.exe";
+                            ClientConfigPath = OldClientPath + "\\RRM3.exe.config";
+                            ExePath = OldClientPath + "\\RRM3.exe";
                         }
                         else
                         {
@@ -189,10 +191,18 @@ namespace Config_Util
         {
             ServerManager ServerMgr = new ServerManager();
             foreach (var site in ServerMgr.Sites)
-               /* if (site.IsLocallyStored == ServicePath) */
+            {
+                if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath != null || site.Applications["/"].VirtualDirectories["/"].PhysicalPath != string.Empty)
                 {
+                    if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == ServicePath)
+                    {
 
+                    }
+                }else
+                {
+                    PanelBox.Text = string.Empty;
                 }
-        }
+            }
+        }   
     }
 }
