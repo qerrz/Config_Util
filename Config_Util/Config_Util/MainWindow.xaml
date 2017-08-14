@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Config_Util"
         mc:Ignorable="d"
-        Title="Config Utility" Height="303.205" Width="694.447" ResizeMode="NoResize">
+        Title="Config Utility" Height="464.205" Width="697.447" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="171*"/>
@@ -18,16 +18,36 @@
         <Button x:Name="RunButton" Content="Run Application" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False"/>
         <TextBox x:Name="CMMSPath" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" RenderTransformOrigin="0.5,0.5" FontSize="18" ToolTip="Paste CMMS Path here then hit the Load button" />
         <Label x:Name="label" Content="CMMS Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16"/>
-        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="388" Margin="166,10,0,0" VerticalAlignment="Top" Width="5" Cursor="Arrow"/>
+        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="484" Margin="170,10,0,0" VerticalAlignment="Top" Width="1" Cursor="Arrow" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
         <TextBox x:Name="AddressBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18" Visibility="Collapsed"/>
         <TextBox x:Name="NameBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18" Visibility="Collapsed"/>
         <TextBox x:Name="LoginBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18" Visibility="Collapsed"/>
         <TextBox x:Name="PasswordBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18" Visibility="Collapsed"/>
         <TextBox x:Name="VersionBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18" Visibility="Collapsed"/>
+        <TextBox x:Name="ServiceBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18" Visibility="Collapsed"/>
+        <TextBox x:Name="ClientBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18" Visibility="Collapsed"/>
+        <TextBox x:Name="RestBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18" Visibility="Collapsed"/>
+        <TextBox x:Name="WebBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18" Visibility="Collapsed"/>
+        <TextBox x:Name="PanelBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18" Visibility="Collapsed"/>
         <Label x:Name="AddressLabel" Content="DB Address:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" Visibility="Collapsed"/>
         <Label x:Name="NameLabel" Content="DB Name:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" Visibility="Collapsed"/>
         <Label x:Name="LoginLabel" Content="DB Login:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" Visibility="Collapsed"/>
         <Label x:Name="PasswordLabel" Content="DB Password:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,161,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" Visibility="Collapsed"/>
         <Label x:Name="VersionLabel" Content="Client Version:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" Visibility="Collapsed"/>
+        <Label x:Name="ServiceLabel" Content="Service Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
+        <Label x:Name="ClientLabel" Content="Client Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,272,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
+        <Label x:Name="RestLabel" Content="Rest Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
+        <Label x:Name="WebLabel" Content="Web Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,346,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
+        <Label x:Name="PanelLabel" Content="Panel Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,383,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
+
     </Grid>
 </Window>
