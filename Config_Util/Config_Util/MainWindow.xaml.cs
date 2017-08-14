@@ -33,6 +33,7 @@ namespace Config_Util
 
         public void LoadFilesButton_Click(object sender, RoutedEventArgs e)
         {
+            bool GetServiceFail = false;
             LoadFilesButton.Content = "Loading...";
             string CMMSPathVar = CMMSPath.Text;
             if (string.IsNullOrEmpty(CMMSPathVar))
@@ -82,61 +83,62 @@ namespace Config_Util
                     {
                         MessageBox.Show("Service directory not found! Check if CMMS path is correct.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         LoadFilesButton.Content = "Load CMMS Catalogue";
-                    }
-                    if (Directory.Exists(NewRestPath))
-                    {
-                        RestBox.Text = NewRestPath;
-                        RestConfigPath = NewRestPath + "Web.config";
-                    }
-                    else if (Directory.Exists(OldRestPath))
-                    {
-                        RestBox.Text = NewRestPath;
-                        RestConfigPath = OldRestPath + "Web.config";
-                    }
-                    else
-                    {
-                        RestBox.Text = "Rest not found";
-                    }
-                    if (Directory.Exists(NewWebPath))
-                    {
-                        WebBox.Text = NewWebPath;
-                        WebConfigPath = NewWebPath + "Web.config";
-                    }
-                    else if (Directory.Exists(OldWebPath))
-                    {
-                        WebBox.Text = OldWebPath;
-                        WebConfigPath = OldWebPath + "Web.config";
-                    }
-                    else
-                    {
-                        WebBox.Text = "Web not found";
-                    }
-                    if (Directory.Exists(NewClientPath))
-                    {
-                        ClientBox.Text = NewClientPath;
-                        ClientConfigPath = NewClientPath + "RRM3.exe.config";
-                        ExePath = NewClientPath + "RRM3.exe";
-                    }
-                    else if (Directory.Exists(OldClientPath))
-                    {
-                        ClientBox.Text = OldClientPath;
-                        ClientConfigPath = OldClientPath + "RRM3.exe.config";
-                        ExePath = OldClientPath + "RRM3.exe";
-                    }
-                    else
-                    {
-                        ClientBox.Text = "Client not found";
-                    }
-                    if (Directory.Exists(PanelPath))
-                    {
-                        PanelBox.Text = PanelPath;
-                    }
-                    else
-                    {
-                        PanelBox.Text = "Panel not found.";
+                        
                     }
                     if (GetServiceSuccess == true)
                     {
+                        if (Directory.Exists(NewRestPath))
+                        {
+                            RestBox.Text = NewRestPath;
+                            RestConfigPath = NewRestPath + "Web.config";
+                        }
+                        else if (Directory.Exists(OldRestPath))
+                        {
+                            RestBox.Text = NewRestPath;
+                            RestConfigPath = OldRestPath + "Web.config";
+                        }
+                        else
+                        {
+                            RestBox.Text = "Rest not found";
+                        }
+                        if (Directory.Exists(NewWebPath))
+                        {
+                            WebBox.Text = NewWebPath;
+                            WebConfigPath = NewWebPath + "Web.config";
+                        }
+                        else if (Directory.Exists(OldWebPath))
+                        {
+                            WebBox.Text = OldWebPath;
+                            WebConfigPath = OldWebPath + "Web.config";
+                        }
+                        else
+                        {
+                            WebBox.Text = "Web not found";
+                        }
+                        if (Directory.Exists(NewClientPath))
+                        {
+                            ClientBox.Text = NewClientPath;
+                            ClientConfigPath = NewClientPath + "RRM3.exe.config";
+                            ExePath = NewClientPath + "RRM3.exe";
+                        }
+                        else if (Directory.Exists(OldClientPath))
+                        {
+                            ClientBox.Text = OldClientPath;
+                            ClientConfigPath = OldClientPath + "RRM3.exe.config";
+                            ExePath = OldClientPath + "RRM3.exe";
+                        }
+                        else
+                        {
+                            ClientBox.Text = "Client not found";
+                        }
+                        if (Directory.Exists(PanelPath))
+                        {
+                            PanelBox.Text = PanelPath;
+                        }
+                        else
+                        {
+                            PanelBox.Text = "Panel not found.";
+                        }
                         XmlDocument config = new XmlDocument();
                         XmlDocument clientconfig = new XmlDocument();
                         clientconfig.Load(ClientConfigPath);
@@ -181,15 +183,10 @@ namespace Config_Util
                         LoadDBButton.IsEnabled = true;
                         LoadFilesButton.Content = "Reload CMMS Catalogue";
                     }
-                    else
-                    {
-                        MessageBox.Show("Directory not found. Make sure path is correct.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                        LoadFilesButton.Content = "Load CMMS Catalogue";
-                    }
                 }
-                else
+                else if (GetServiceFail == false)
                 {
-                    MessageBox.Show("Directory not found. Make sure path is correct.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("That is not valid CMMS directory.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     LoadFilesButton.Content = "Load CMMS Catalogue";
                 }
                 
