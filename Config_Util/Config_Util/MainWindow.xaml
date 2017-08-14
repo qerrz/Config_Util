@@ -11,9 +11,9 @@
             <ColumnDefinition Width="171*"/>
             <ColumnDefinition Width="509*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="LoadFilesButton" Content="Load CMMS Catalogue" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="LoadFilesButton_Click"/>
-        <Button x:Name="EditButton" Content="Edit Connection Data" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False"/>
-        <Button x:Name="ListFilesButton" Content="List Files to Modify" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False"/>
+        <Button x:Name="LoadFilesButton" Content="Load CMMS Catalogue" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="LoadFilesButton_Click" ToolTip="Load information about cmms files structure"/>
+        <Button x:Name="EditButton" Content="Edit Connection Data" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Modify connection string of given instance"/>
+        <Button x:Name="IISDataButton" Content="Load IIS Websites" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Loads IIS Websites associated with preset paths" Click="IISDataButton_Click"/>
         <Button x:Name="LoadDBButton" Content="Load Database Module" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False"/>
         <Button x:Name="RunButton" Content="Run Application" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False"/>
         <TextBox x:Name="CMMSPath" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" RenderTransformOrigin="0.5,0.5" FontSize="18" ToolTip="Paste CMMS Path here then hit the Load button" />
