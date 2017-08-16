@@ -33,9 +33,11 @@ namespace Config_Util
         string RestPath = string.Empty;
         string WebPath = string.Empty;
         string ClientPath = string.Empty;
+     
         
         public void LoadFilesButton_Click(object sender, RoutedEventArgs e)
         {
+            CMMSPath.Text = "C:\\Queris\\CMMS - Testing";
             bool GetServiceFail = false;
             LoadFilesButton.Content = "Loading...";
             string CMMSPathVar = CMMSPath.Text;
@@ -62,12 +64,14 @@ namespace Config_Util
 
                     if (Directory.Exists(NewServicePath))
                     {
+                        ServicePath = NewServicePath;
                         ServiceBox.Text = NewServicePath;
                         ServiceConfigPath = NewServicePath + "\\Web.config";
                         GetServiceSuccess = true;
                     }
                     else if (Directory.Exists(OldServicePath))
                     {
+                        ServicePath = OldServicePath;
                         ServiceBox.Text = OldServicePath;
                         ServiceConfigPath = OldServicePath + "\\Web.config";
                         GetServiceSuccess = true;
@@ -82,12 +86,14 @@ namespace Config_Util
                     {
                         if (Directory.Exists(NewRestPath))
                         {
+                            RestPath = NewRestPath;
                             RestBox.Text = NewRestPath;
                             RestConfigPath = NewRestPath + "\\Web.config";
                         }
                         else if (Directory.Exists(OldRestPath))
                         {
-                            RestBox.Text = NewRestPath;
+                            RestPath = OldRestPath;
+                            RestBox.Text = OldRestPath;
                             RestConfigPath = OldRestPath + "\\Web.config";
                         }
                         else
@@ -96,11 +102,13 @@ namespace Config_Util
                         }
                         if (Directory.Exists(NewWebPath))
                         {
+                            WebPath = NewWebPath;
                             WebBox.Text = NewWebPath;
                             WebConfigPath = NewWebPath + "\\Web.config";
                         }
                         else if (Directory.Exists(OldWebPath))
                         {
+                            WebPath = OldWebPath;
                             WebBox.Text = OldWebPath;
                             WebConfigPath = OldWebPath + "\\Web.config";
                         }
@@ -189,6 +197,7 @@ namespace Config_Util
 
         private void IISDataButton_Click(object sender, RoutedEventArgs e)
         {
+            PortsLabel.Visibility = System.Windows.Visibility.Visible;
             ServerManager ServerMgr = new ServerManager();
             foreach (var site in ServerMgr.Sites)
             {
@@ -196,11 +205,48 @@ namespace Config_Util
                 {
                     if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == ServicePath)
                     {
-
+                        foreach (var binding in site.Bindings)
+                        {
+                            if (binding.Protocol == "net.tcp")
+                            {
+                                ServicePortBox.Visibility = System.Windows.Visibility.Visible;
+                                string ConvertedBinding = binding.BindingInformation;
+                                Regex regex = new Regex("\\d+");
+                                Match service_result = regex.Match(ConvertedBinding);
+                                ServicePortBox.Text = service_result.Value;
+                            }
+                            else
+                            {
+                                //MessageBox.Show("Cannot locate service port in IIS.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        }
                     }
-                }else
+                    if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == RestPath)
+                    {
+                        foreach (var binding in site.Bindings)
+                        {
+                            RestPortBox.Visibility = System.Windows.Visibility.Visible;
+                            string ConvertedBinding = binding.BindingInformation;
+                            Regex regex = new Regex("\\d+");
+                            Match rest_result = regex.Match(ConvertedBinding);
+                            RestPortBox.Text = rest_result.Value;
+                        }
+                    }
+                    if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == WebPath)
+                    {
+                        foreach (var binding in site.Bindings)
+                        {
+                            WebPortBox.Visibility = System.Windows.Visibility.Visible;
+                            string ConvertedBinding = binding.BindingInformation;
+                            Regex regex = new Regex("\\d+");
+                            Match web_result = regex.Match(ConvertedBinding);
+                            WebPortBox.Text = web_result.Value;
+                        }
+                    }
+                }
+                    else
                 {
-                    PanelBox.Text = string.Empty;
+
                 }
             }
         }   
