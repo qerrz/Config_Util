@@ -63,7 +63,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="IIS Info">
+            <TabItem x:Name="IISTab" Header="IIS Info" IsEnabled="False">
                 <Grid Background="Transparent">
                     <Grid HorizontalAlignment="Left" Height="328" VerticalAlignment="Top" Width="589">
                         <TextBox x:Name="ServicePortBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="505,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>

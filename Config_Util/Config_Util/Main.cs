@@ -33,6 +33,7 @@ namespace Config_Util
         string RestPath = string.Empty;
         string WebPath = string.Empty;
         string ClientPath = string.Empty;
+        string CMMSTestingPath = "C:\\Queris\\CMMS - Testing";
      
         
         public void LoadFilesButton_Click(object sender, RoutedEventArgs e)
@@ -43,8 +44,9 @@ namespace Config_Util
             string CMMSPathVar = CMMSPath.Text;
             if (string.IsNullOrEmpty(CMMSPathVar))
             {
-                MessageBox.Show("Enter CMMS Path first!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show("Enter CMMS Path first!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 LoadFilesButton.Content = "Load CMMS Catalogue";
+                CMMSPath.Text = CMMSTestingPath;
             }
             else
             {
@@ -159,26 +161,6 @@ namespace Config_Util
                         PasswordBox.Text = result[6].ToString();
                         PasswordBox.Text = PasswordBox.Text.Substring(1, PasswordBox.Text.Length - 2);
                         VersionBox.Text = ClientVersion;
-                        AddressBox.Visibility = System.Windows.Visibility.Visible;
-                        NameBox.Visibility = System.Windows.Visibility.Visible;
-                        LoginBox.Visibility = System.Windows.Visibility.Visible;
-                        PasswordBox.Visibility = System.Windows.Visibility.Visible;
-                        VersionBox.Visibility = System.Windows.Visibility.Visible;
-                        ServiceBox.Visibility = System.Windows.Visibility.Visible;
-                        ClientBox.Visibility = System.Windows.Visibility.Visible;
-                        RestBox.Visibility = System.Windows.Visibility.Visible;
-                        WebBox.Visibility = System.Windows.Visibility.Visible;
-                        PanelBox.Visibility = System.Windows.Visibility.Visible;
-                        AddressLabel.Visibility = System.Windows.Visibility.Visible;
-                        NameLabel.Visibility = System.Windows.Visibility.Visible;
-                        LoginLabel.Visibility = System.Windows.Visibility.Visible;
-                        PasswordLabel.Visibility = System.Windows.Visibility.Visible;
-                        VersionLabel.Visibility = System.Windows.Visibility.Visible;
-                        ServiceLabel.Visibility = System.Windows.Visibility.Visible;
-                        ClientLabel.Visibility = System.Windows.Visibility.Visible;
-                        RestLabel.Visibility = System.Windows.Visibility.Visible;
-                        WebLabel.Visibility = System.Windows.Visibility.Visible;
-                        PanelLabel.Visibility = System.Windows.Visibility.Visible;
                         IISDataButton.IsEnabled = true;
                         //EditButton.IsEnabled = true;
                         //LoadDBButton.IsEnabled = true;
@@ -197,7 +179,7 @@ namespace Config_Util
 
         private void IISDataButton_Click(object sender, RoutedEventArgs e)
         {
-            PortsLabel.Visibility = System.Windows.Visibility.Visible;
+            IISTab.IsEnabled = true;
             ServerManager ServerMgr = new ServerManager();
             foreach (var site in ServerMgr.Sites)
             {
