@@ -1,9 +1,10 @@
-﻿<Window x:Class="Config_Util.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Config_Util"
+        xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" x:Class="Config_Util.MainWindow"
         mc:Ignorable="d"
         Title="Config Utility" Height="464.205" Width="830.447" ResizeMode="NoResize">
     <Grid>
@@ -28,26 +29,7 @@
                 </TransformGroup>
             </GridSplitter.RenderTransform>
         </GridSplitter>
-        <TextBox x:Name="AddressBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="NameBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="LoginBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="PasswordBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="VersionBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="ServiceBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="ClientBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="RestBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="WebBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="PanelBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18" Visibility="Collapsed"/>
-        <Label x:Name="AddressLabel" Content="DB Address:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" Visibility="Collapsed"/>
-        <Label x:Name="NameLabel" Content="DB Name:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" Visibility="Collapsed"/>
-        <Label x:Name="LoginLabel" Content="DB Login:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" Visibility="Collapsed"/>
-        <Label x:Name="PasswordLabel" Content="DB Password:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,161,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" Visibility="Collapsed"/>
-        <Label x:Name="VersionLabel" Content="Client Version:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" Visibility="Collapsed"/>
-        <Label x:Name="ServiceLabel" Content="Service Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,383,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
-        <Label x:Name="ClientLabel" Content="Client Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
-        <Label x:Name="RestLabel" Content="Rest Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
-        <Label x:Name="WebLabel" Content="Web Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,346,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
-        <Label x:Name="PanelLabel" Content="Panel Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,272,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
+
         <GridSplitter x:Name="gridSplitter_Copy" HorizontalAlignment="Left" Height="484" Margin="512,13,0,-62" VerticalAlignment="Top" Width="1" Cursor="Arrow" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
             <GridSplitter.RenderTransform>
                 <TransformGroup>
@@ -58,10 +40,59 @@
                 </TransformGroup>
             </GridSplitter.RenderTransform>
         </GridSplitter>
-        <TextBox x:Name="ServicePortBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="534,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="WebPortBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="534,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18" Visibility="Collapsed"/>
-        <TextBox x:Name="RestPortBox" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="534,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18" Visibility="Collapsed"/>
-        <Label x:Name="PortsLabel" Content="IIS Ports:" Grid.Column="1" HorizontalAlignment="Left" Margin="534,272,0,0" VerticalAlignment="Top" Height="32" Width="74" FontSize="16" RenderTransformOrigin="0.87,1.438" Visibility="Collapsed"/>
+
+        <dx:DXTabControl Grid.Column="1" Margin="10,47,10,10">
+            <dx:DXTabItem Header="Basic Info">
+                <Grid Background="Transparent">
+                    <TextBox x:Name="AddressBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18"/>
+                    <TextBox x:Name="NameBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18"/>
+                    <TextBox x:Name="LoginBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18"/>
+                    <TextBox x:Name="PasswordBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18"/>
+                    <TextBox x:Name="VersionBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18"/>
+                    <Label x:Name="AddressLabel" Content="DB Address:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16"/>
+                    <Label x:Name="NameLabel" Content="DB Name:" HorizontalAlignment="Left" Margin="0,47,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16"/>
+                    <Label x:Name="LoginLabel" Content="DB Login:" HorizontalAlignment="Left" Margin="0,84,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16"/>
+                    <Label x:Name="PasswordLabel" Content="DB Password:" HorizontalAlignment="Left" Margin="0,121,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16"/>
+                    <Label x:Name="VersionLabel" Content="Client Version:" HorizontalAlignment="Left" Margin="0,158,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16"/>
+
+                </Grid>
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="Files &amp; Folders">
+                <Grid Background="Transparent">
+                    <Grid HorizontalAlignment="Left" Height="328" VerticalAlignment="Top" Width="589">
+                        <TextBox x:Name="ServiceBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18"/>
+                        <TextBox x:Name="ClientBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18"/>
+                        <TextBox x:Name="RestBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18"/>
+                        <TextBox x:Name="WebBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18"/>
+                        <TextBox x:Name="PanelBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18"/>
+                        <Label x:Name="ServiceLabel" Content="Service Path:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <Label x:Name="ClientLabel" Content="Client Path:" HorizontalAlignment="Left" Margin="0,84,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <Label x:Name="RestLabel" Content="Rest Path:" HorizontalAlignment="Left" Margin="0,158,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <Label x:Name="WebLabel" Content="Web Path:" HorizontalAlignment="Left" Margin="0,47,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <Label x:Name="PanelLabel" Content="Panel Path:" HorizontalAlignment="Left" Margin="0,121,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                    </Grid>
+                </Grid>
+
+            </dx:DXTabItem>
+            <dx:DXTabItem Header="IIS Info">
+                <Grid Background="Transparent">
+                    <Grid HorizontalAlignment="Left" Height="328" VerticalAlignment="Top" Width="589">
+                        <TextBox x:Name="ServicePortBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="505,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
+                        <TextBox x:Name="WebPortBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="505,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
+                        <TextBox x:Name="RestPortBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="505,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
+                        <Label x:Name="PortsLabel" Content="IIS Ports:" HorizontalAlignment="Left" Margin="505,0,0,0" VerticalAlignment="Top" Height="32" Width="74" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <Label x:Name="ServiceSiteName" Content="Service Site Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="145" FontSize="16" RenderTransformOrigin="0.87,1.438" Margin="0,37,0,0"/>
+                        <Label x:Name="RestSiteName" Content="Rest Site Name:" HorizontalAlignment="Left" Margin="0,74,0,0" VerticalAlignment="Top" Height="32" Width="145" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <Label x:Name="WebSiteName" Content="Web Site Name:" HorizontalAlignment="Left" Margin="0,111,0,0" VerticalAlignment="Top" Height="32" Width="145" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <TextBox x:Name="ServiceSiteBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="150,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" FontSize="18"/>
+                        <TextBox x:Name="RestSiteBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="150,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" FontSize="18"/>
+                        <TextBox x:Name="WebSiteBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="150,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" FontSize="18"/>
+
+                    </Grid>
+
+                </Grid>
+            </dx:DXTabItem>
+        </dx:DXTabControl>
 
     </Grid>
 </Window>

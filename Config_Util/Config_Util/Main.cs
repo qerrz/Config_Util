@@ -37,7 +37,7 @@ namespace Config_Util
         
         public void LoadFilesButton_Click(object sender, RoutedEventArgs e)
         {
-            CMMSPath.Text = "C:\\Queris\\CMMS - Testing";
+            // CMMSPath.Text = "C:\\Queris\\CMMS - Testing";
             bool GetServiceFail = false;
             LoadFilesButton.Content = "Loading...";
             string CMMSPathVar = CMMSPath.Text;
@@ -180,9 +180,9 @@ namespace Config_Util
                         WebLabel.Visibility = System.Windows.Visibility.Visible;
                         PanelLabel.Visibility = System.Windows.Visibility.Visible;
                         IISDataButton.IsEnabled = true;
-                        EditButton.IsEnabled = true;
-                        LoadDBButton.IsEnabled = true;
-                        RunButton.IsEnabled = true;
+                        //EditButton.IsEnabled = true;
+                        //LoadDBButton.IsEnabled = true;
+                        //RunButton.IsEnabled = true;
                         LoadFilesButton.Content = "Reload CMMS Catalogue";
                     }
                 }
@@ -205,6 +205,7 @@ namespace Config_Util
                 {
                     if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == ServicePath)
                     {
+                        ServiceSiteBox.Text = site.Name;
                         foreach (var binding in site.Bindings)
                         {
                             if (binding.Protocol == "net.tcp")
@@ -223,6 +224,7 @@ namespace Config_Util
                     }
                     if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == RestPath)
                     {
+                        RestSiteBox.Text = site.Name;
                         foreach (var binding in site.Bindings)
                         {
                             RestPortBox.Visibility = System.Windows.Visibility.Visible;
@@ -234,6 +236,7 @@ namespace Config_Util
                     }
                     if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == WebPath)
                     {
+                        WebSiteBox.Text = site.Name;
                         foreach (var binding in site.Bindings)
                         {
                             WebPortBox.Visibility = System.Windows.Visibility.Visible;
