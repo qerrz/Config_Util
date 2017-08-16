@@ -9,8 +9,8 @@
         Title="Config Utility" Height="464.205" Width="830.447" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="189*"/>
-            <ColumnDefinition Width="635*"/>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="159*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="LoadFilesButton" Content="Load CMMS Catalogue" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="LoadFilesButton_Click" ToolTip="Load information about cmms files structure"/>
         <Button x:Name="EditButton" Content="Edit Connection Data" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Modify connection string of given instance"/>
@@ -19,7 +19,7 @@
         <Button x:Name="RunButton" Content="Run Application" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False"/>
         <TextBox x:Name="CMMSPath" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" RenderTransformOrigin="0.5,0.5" FontSize="18" ToolTip="Paste CMMS Path here then hit the Load button" />
         <Label x:Name="label" Content="CMMS Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16"/>
-        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="484" Margin="171,9,0,-58" VerticalAlignment="Top" Width="1" Cursor="Arrow" RenderTransformOrigin="0.5,0.5">
+        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="484" Margin="175,12,0,-61" VerticalAlignment="Top" Width="1" Cursor="Arrow" RenderTransformOrigin="0.5,0.5">
             <GridSplitter.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -30,19 +30,8 @@
             </GridSplitter.RenderTransform>
         </GridSplitter>
 
-        <GridSplitter x:Name="gridSplitter_Copy" HorizontalAlignment="Left" Height="484" Margin="512,13,0,-62" VerticalAlignment="Top" Width="1" Cursor="Arrow" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
-            <GridSplitter.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </GridSplitter.RenderTransform>
-        </GridSplitter>
-
-        <dx:DXTabControl Grid.Column="1" Margin="10,47,10,10">
-            <dx:DXTabItem Header="Basic Info">
+        <TabControl Grid.Column="1" Margin="10,47,10,10">
+            <TabItem Header="Basic Info">
                 <Grid Background="Transparent">
                     <TextBox x:Name="AddressBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18"/>
                     <TextBox x:Name="NameBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18"/>
@@ -56,8 +45,8 @@
                     <Label x:Name="VersionLabel" Content="Client Version:" HorizontalAlignment="Left" Margin="0,158,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16"/>
 
                 </Grid>
-            </dx:DXTabItem>
-            <dx:DXTabItem Header="Files &amp; Folders">
+            </TabItem>
+            <TabItem Header="Files &amp; Folders">
                 <Grid Background="Transparent">
                     <Grid HorizontalAlignment="Left" Height="328" VerticalAlignment="Top" Width="589">
                         <TextBox x:Name="ServiceBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18"/>
@@ -73,8 +62,8 @@
                     </Grid>
                 </Grid>
 
-            </dx:DXTabItem>
-            <dx:DXTabItem Header="IIS Info">
+            </TabItem>
+            <TabItem Header="IIS Info">
                 <Grid Background="Transparent">
                     <Grid HorizontalAlignment="Left" Height="328" VerticalAlignment="Top" Width="589">
                         <TextBox x:Name="ServicePortBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="505,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
@@ -91,8 +80,8 @@
                     </Grid>
 
                 </Grid>
-            </dx:DXTabItem>
-        </dx:DXTabControl>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>
