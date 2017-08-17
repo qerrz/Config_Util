@@ -192,15 +192,17 @@ namespace Config_Util
                         {
                             if (binding.Protocol == "net.tcp")
                             {
-                                ServicePortBox.Visibility = System.Windows.Visibility.Visible;
                                 string ConvertedBinding = binding.BindingInformation;
                                 Regex regex = new Regex("\\d+");
                                 Match service_result = regex.Match(ConvertedBinding);
-                                ServicePortBox.Text = service_result.Value;
+                                ServicePortBox_NetTcp.Text = service_result.Value;
                             }
                             else
                             {
-                                //MessageBox.Show("Cannot locate service port in IIS.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                string ConvertedBinding = binding.BindingInformation;
+                                Regex regex = new Regex("\\d+");
+                                Match service_result = regex.Match(ConvertedBinding);
+                                ServicePortBox_Http.Text = service_result.Value;
                             }
                         }
                     }

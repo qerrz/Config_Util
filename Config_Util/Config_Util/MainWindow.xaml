@@ -9,8 +9,8 @@
         Title="Config Utility" Height="464.205" Width="830.447" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="47*"/>
-            <ColumnDefinition Width="159*"/>
+            <ColumnDefinition Width="183*"/>
+            <ColumnDefinition Width="641*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="LoadFilesButton" Content="Load CMMS Catalogue" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="LoadFilesButton_Click" ToolTip="Load information about cmms files structure"/>
         <Button x:Name="EditButton" Content="Edit Connection Data" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Modify connection string of given instance"/>
@@ -65,17 +65,20 @@
             </TabItem>
             <TabItem x:Name="IISTab" Header="IIS Info" IsEnabled="False">
                 <Grid Background="Transparent">
-                    <Grid HorizontalAlignment="Left" Height="328" VerticalAlignment="Top" Width="589">
-                        <TextBox x:Name="ServicePortBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="505,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
-                        <TextBox x:Name="WebPortBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="505,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
-                        <TextBox x:Name="RestPortBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="505,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
-                        <Label x:Name="PortsLabel" Content="IIS Ports:" HorizontalAlignment="Left" Margin="505,0,0,0" VerticalAlignment="Top" Height="32" Width="74" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
-                        <Label x:Name="ServiceSiteName" Content="Service Site Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="145" FontSize="16" RenderTransformOrigin="0.87,1.438" Margin="0,37,0,0"/>
-                        <Label x:Name="RestSiteName" Content="Rest Site Name:" HorizontalAlignment="Left" Margin="0,74,0,0" VerticalAlignment="Top" Height="32" Width="145" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
-                        <Label x:Name="WebSiteName" Content="Web Site Name:" HorizontalAlignment="Left" Margin="0,111,0,0" VerticalAlignment="Top" Height="32" Width="145" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
-                        <TextBox x:Name="ServiceSiteBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="150,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" FontSize="18"/>
-                        <TextBox x:Name="RestSiteBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="150,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" FontSize="18"/>
-                        <TextBox x:Name="WebSiteBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="150,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" FontSize="18"/>
+                    <Grid HorizontalAlignment="Left" Height="328" VerticalAlignment="Top" Width="605">
+                        <TextBox x:Name="ServicePortBox_Http" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="515,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
+                        <TextBox x:Name="WebPortBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="515,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
+                        <TextBox x:Name="RestPortBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="515,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
+                        <Label x:Name="PortsLabel" Content="IIS Ports:" HorizontalAlignment="Left" Margin="436,3,0,0" VerticalAlignment="Top" Height="32" Width="74" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <Label x:Name="ServiceSiteName" Content="Service Site Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="145" FontSize="16" RenderTransformOrigin="0.87,1.438" Margin="0,77,0,0"/>
+                        <Label x:Name="RestSiteName" Content="Rest Site Name:" HorizontalAlignment="Left" Margin="0,114,0,0" VerticalAlignment="Top" Height="32" Width="145" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <Label x:Name="WebSiteName" Content="Web Site Name:" HorizontalAlignment="Left" Margin="0,151,0,0" VerticalAlignment="Top" Height="32" Width="145" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <TextBox x:Name="ServiceSiteBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="150,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" FontSize="18"/>
+                        <TextBox x:Name="RestSiteBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="150,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" FontSize="18"/>
+                        <TextBox x:Name="WebSiteBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="150,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" FontSize="18"/>
+                        <TextBox x:Name="ServicePortBox_NetTcp" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="436,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" FontSize="18"/>
+                        <Label x:Name="NetTcpLabel" Content="Net.tcp" HorizontalAlignment="Left" Margin="436,40,0,0" VerticalAlignment="Top" Height="32" Width="74" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
+                        <Label x:Name="HttpLabel" Content="Http" HorizontalAlignment="Left" Margin="515,40,0,0" VerticalAlignment="Top" Height="32" Width="74" FontSize="16" RenderTransformOrigin="0.87,1.438"/>
 
                     </Grid>
 
