@@ -13,7 +13,7 @@
             <ColumnDefinition Width="641*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="LoadFilesButton" Content="Load CMMS Catalogue" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="LoadFilesButton_Click" ToolTip="Load information about cmms files structure"/>
-        <Button x:Name="EditButton" Content="Edit Connection Data" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Modify connection string of given instance"/>
+        <Button x:Name="EditButton" Content="Edit Connection Data" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Modify connection string of given instance" Click="EditButton_Click"/>
         <Button x:Name="IISDataButton" Content="Load IIS Websites" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Loads IIS Websites associated with preset paths" Click="IISDataButton_Click"/>
         <Button x:Name="LoadDBButton" Content="Load Database Module" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False"/>
         <Button x:Name="RunButton" Content="Run Application" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False"/>
@@ -31,7 +31,7 @@
         </GridSplitter>
 
         <TabControl Grid.Column="1" Margin="10,47,10,10">
-            <TabItem Header="Basic Info">
+            <TabItem x:Name="BasicTab" Header="Basic Info">
                 <Grid Background="Transparent">
                     <TextBox x:Name="AddressBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18"/>
                     <TextBox x:Name="NameBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" FontSize="18"/>
@@ -46,7 +46,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Files &amp; Folders">
+            <TabItem x:Name="FilesTab" Header="Files &amp; Folders">
                 <Grid Background="Transparent">
                     <Grid HorizontalAlignment="Left" Height="328" VerticalAlignment="Top" Width="589">
                         <TextBox x:Name="ServiceBox" IsReadOnly="True" HorizontalAlignment="Left" Height="32" Margin="120,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" FontSize="18"/>

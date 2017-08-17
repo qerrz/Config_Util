@@ -34,7 +34,7 @@ namespace Config_Util
         string WebPath = string.Empty;
         string ClientPath = string.Empty;
         string CMMSTestingPath = "C:\\Queris\\CMMS - Testing";
-     
+        bool EditFlag = false;
         
         public void LoadFilesButton_Click(object sender, RoutedEventArgs e)
         {
@@ -162,6 +162,7 @@ namespace Config_Util
                         PasswordBox.Text = PasswordBox.Text.Substring(1, PasswordBox.Text.Length - 2);
                         VersionBox.Text = ClientVersion;
                         IISDataButton.IsEnabled = true;
+                        EditButton.IsEnabled = true;
                         //EditButton.IsEnabled = true;
                         //LoadDBButton.IsEnabled = true;
                         //RunButton.IsEnabled = true;
@@ -236,6 +237,37 @@ namespace Config_Util
 
                 }
             }
-        }   
+        }
+        public void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (EditFlag == false)
+            {
+                EditFlag = true;
+                EditButton.Content = "Save files";
+                IISTab.IsEnabled = false;
+                FilesTab.IsEnabled = false;
+                BasicTab.Focus();
+                AddressBox.IsReadOnly = false;
+                NameBox.IsReadOnly = false;
+                LoginBox.IsReadOnly = false;
+                PasswordBox.IsReadOnly = false;
+            }
+            else if (EditFlag == true)
+            {
+                string ConnectionString = string.Empty;
+                EditFlag = false;
+                EditButton.Content = "Edit Connection Data";
+                IISTab.IsEnabled = true;
+                FilesTab.IsEnabled = true;
+                ConnectionString = "metadata=res://*/RrmDBModel.csdl|res://*/RrmDBModel.ssdl|res://*/RrmDBModel.msl;provider=System.Data.SqlClient;provider connection string=\"data source=" + AddressBox.Text + ";initial catalog=" + NameBox.Text + ";persist security info=True;user id=" + LoginBox.Text + ";password=" + PasswordBox.Text + ";MultipleActiveResultSets=True;App=EntityFramework\"";
+                MessageBox.Show(ConnectionString, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+            else
+            {
+                MessageBox.Show("You weren't supposed to see this error, ever.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
     }
 }
