@@ -163,7 +163,6 @@ namespace Config_Util
                         VersionBox.Text = ClientVersion;
                         IISDataButton.IsEnabled = true;
                         EditButton.IsEnabled = true;
-                        //EditButton.IsEnabled = true;
                         //LoadDBButton.IsEnabled = true;
                         //RunButton.IsEnabled = true;
                         LoadFilesButton.Content = "Reload CMMS Catalogue";
@@ -240,8 +239,10 @@ namespace Config_Util
         }
         public void EditButton_Click(object sender, RoutedEventArgs e)
         {
+            /* BUTTON NOT IN SAVE MODE */
             if (EditFlag == false)
             {
+                /* SET FOCUS, UNLOCK BOXES, LOCK APP - SET SAVE MODE */
                 EditFlag = true;
                 EditButton.Content = "Save files";
                 IISTab.IsEnabled = false;
@@ -252,20 +253,46 @@ namespace Config_Util
                 LoginBox.IsReadOnly = false;
                 PasswordBox.IsReadOnly = false;
             }
+            /* BUTTON IN SAVE MODE */
             else if (EditFlag == true)
             {
                 string ConnectionString = string.Empty;
+                /* GENERATE NEW CONNECTIONSTRING */
+                ConnectionString = "metadata=res://*/RrmDBModel.csdl|res://*/RrmDBModel.ssdl|res://*/RrmDBModel.msl;provider=System.Data.SqlClient;provider connection string=\"data source=" + AddressBox.Text + ";initial catalog=" + NameBox.Text + ";persist security info=True;user id=" + LoginBox.Text + ";password=" + PasswordBox.Text + ";MultipleActiveResultSets=True;App=EntityFramework\"";
+                /* BEGIN SAVING DOCUMENTS */
+                XmlDocument ServiceFile = new XmlDocument();
+                XmlDocument RestFile = new XmlDocument();
+                XmlDocument WebFile = new XmlDocument();
+                /* LOAD DOCUMENTS */
+                ServiceFile.Load(ServiceConfigPath);
+                RestFile.Load(RestConfigPath);
+                WebFile.Load(WebConfigPath);
+                /* SELECT NODES */
+                XmlNode ServiceConnStringNode = ServiceFile.SelectSingleNode("/configuration/connectionStrings/add");
+                XmlNode RestFileNode = RestFile.SelectSingleNode("/configuration/connectionStrings/add");
+                XmlNode WebFileNode = WebFile.SelectSingleNode("/configuration/connectionStrings/add");
+                /* CHANGE NODES */
+                ServiceConnStringNode.Attributes["connectionString"].Value = ConnectionString;
+                RestFileNode.Attributes["connectionString"].Value = ConnectionString;
+                WebFileNode.Attributes["connectionString"].Value = ConnectionString;
+                /* SAVE FILES */
+                ServiceFile.Save(ServiceConfigPath);
+                RestFile.Save(RestConfigPath);
+                WebFile.Save(WebConfigPath);
+                /* LOCK TEXTBOXES */
+                AddressBox.IsReadOnly = true;
+                NameBox.IsReadOnly = true;
+                LoginBox.IsReadOnly = true;
+                PasswordBox.IsReadOnly = true;
+                /* UNLOCK APP - END SAVE MODE */
                 EditFlag = false;
                 EditButton.Content = "Edit Connection Data";
                 IISTab.IsEnabled = true;
                 FilesTab.IsEnabled = true;
-                ConnectionString = "metadata=res://*/RrmDBModel.csdl|res://*/RrmDBModel.ssdl|res://*/RrmDBModel.msl;provider=System.Data.SqlClient;provider connection string=\"data source=" + AddressBox.Text + ";initial catalog=" + NameBox.Text + ";persist security info=True;user id=" + LoginBox.Text + ";password=" + PasswordBox.Text + ";MultipleActiveResultSets=True;App=EntityFramework\"";
-                MessageBox.Show(ConnectionString, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-
             }
             else
             {
-                MessageBox.Show("You weren't supposed to see this error, ever.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("You weren't supposed to see this error, ever.", "I'm not even mad", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
