@@ -7,12 +7,9 @@ namespace Config_Util
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private void label_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            InitializeComponent();
-            
+
         }
-
-
     }
 }

@@ -20,20 +20,54 @@ namespace Config_Util
         string RestPath = string.Empty;
         string WebPath = string.Empty;
         string ClientPath = string.Empty;
-        string CMMSTestingPath = "C:\\Queris\\CMMS - Testing";
+        //string CMMSTestingPath = "C:\\Queris\\CMMS - Testing";
         bool EditFlag = false;
-        
+        bool ComboAsSource = false;
+        bool PathAsSource = false;
+        string IsPredefined = System.Configuration.ConfigurationManager.AppSettings["IsPredefined"];
+        public MainWindow()
+        {
+            InitializeComponent();
+            if (IsPredefined == "1")
+            {
+                CMMSPathCombo.Visibility = System.Windows.Visibility.Visible;
+                ComboAsSource = true;
+                foreach (string key in System.Configuration.ConfigurationManager.AppSettings.AllKeys)
+                {
+                    if (key.StartsWith("CMMS"))
+                    {
+                        string value = System.Configuration.ConfigurationManager.AppSettings[key];
+                        CMMSPathCombo.Items.Add(value);
+                    }
+                }
+            }
+            else
+            {
+                CMMSPath.Visibility = System.Windows.Visibility.Visible;
+                PathAsSource = true;
+            }
+
+        }
         public void LoadFilesButton_Click(object sender, RoutedEventArgs e)
+
         {
             // CMMSPath.Text = "C:\\Queris\\CMMS - Testing";
             bool GetServiceFail = false;
+            string CMMSPathVar = string.Empty;
             LoadFilesButton.Content = "Loading...";
-            string CMMSPathVar = CMMSPath.Text;
+            if (PathAsSource == true)
+            {
+                CMMSPathVar = CMMSPath.Text;
+            }
+            else if (ComboAsSource == true)
+            {
+                CMMSPathVar = CMMSPathCombo.SelectedItem.ToString();
+            }
             if (string.IsNullOrEmpty(CMMSPathVar))
             {
-                //MessageBox.Show("Enter CMMS Path first!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Enter CMMS Path first!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 LoadFilesButton.Content = "Load CMMS Catalogue";
-                CMMSPath.Text = CMMSTestingPath;
+                //CMMSPath.Text = CMMSTestingPath;
             }
             else
             {
@@ -167,6 +201,7 @@ namespace Config_Util
         private void IISDataButton_Click(object sender, RoutedEventArgs e)
         {
             IISTab.IsEnabled = true;
+            IISTab.Focus();
             ServerManager ServerMgr = new ServerManager();
             foreach (var site in ServerMgr.Sites)
             {
