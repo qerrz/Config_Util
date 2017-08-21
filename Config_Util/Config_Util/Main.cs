@@ -1,22 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
 using Microsoft.Web.Administration;
-using System.Collections.Specialized;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace Config_Util
 {
@@ -164,7 +151,7 @@ namespace Config_Util
                         IISDataButton.IsEnabled = true;
                         EditButton.IsEnabled = true;
                         //LoadDBButton.IsEnabled = true;
-                        //RunButton.IsEnabled = true;
+                        RunButton.IsEnabled = true;
                         LoadFilesButton.Content = "Reload CMMS Catalogue";
                     }
                 }
@@ -295,6 +282,12 @@ namespace Config_Util
                 MessageBox.Show("You weren't supposed to see this error, ever.", "I'm not even mad", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+        private void RunButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = ExePath;
+            Process.Start(start);
         }
     }
 }
