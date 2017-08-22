@@ -4,6 +4,8 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using Microsoft.Web.Administration;
 using System.Diagnostics;
+using System.Security.Principal;
+using System.Threading;
 
 namespace Config_Util
 {
@@ -198,65 +200,81 @@ namespace Config_Util
             }
         }
 
+        bool IsElevated
+        {
+            get
+            {
+                return new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
+            }
+        }
+
         private void IISDataButton_Click(object sender, RoutedEventArgs e)
         {
-            IISTab.IsEnabled = true;
-            IISTab.Focus();
-            ServerManager ServerMgr = new ServerManager();
-            foreach (var site in ServerMgr.Sites)
-            {
-                if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath != null || site.Applications["/"].VirtualDirectories["/"].PhysicalPath != string.Empty)
+            if (IsElevated == true)
+            { 
+           
+                IISTab.IsEnabled = true;
+                IISTab.Focus();
+                ServerManager ServerMgr = new ServerManager();
+                foreach (var site in ServerMgr.Sites)
                 {
-                    if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == ServicePath)
+                    if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath != null || site.Applications["/"].VirtualDirectories["/"].PhysicalPath != string.Empty)
                     {
-                        ServiceSiteBox.Text = site.Name;
-                        foreach (var binding in site.Bindings)
+                        if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == ServicePath)
                         {
-                            if (binding.Protocol == "net.tcp")
+                            ServiceSiteBox.Text = site.Name;
+                            foreach (var binding in site.Bindings)
                             {
+                                if (binding.Protocol == "net.tcp")
+                                {
+                                    string ConvertedBinding = binding.BindingInformation;
+                                    Regex regex = new Regex("\\d+");
+                                    Match service_result = regex.Match(ConvertedBinding);
+                                    ServicePortBox_NetTcp.Text = service_result.Value;
+                                }
+                                else
+                                {
+                                    string ConvertedBinding = binding.BindingInformation;
+                                    Regex regex = new Regex("\\d+");
+                                    Match service_result = regex.Match(ConvertedBinding);
+                                    ServicePortBox_Http.Text = service_result.Value;
+                                }
+                            }
+                        }
+                        if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == RestPath)
+                        {
+                            RestSiteBox.Text = site.Name;
+                            foreach (var binding in site.Bindings)
+                            {
+                                RestPortBox.Visibility = System.Windows.Visibility.Visible;
                                 string ConvertedBinding = binding.BindingInformation;
                                 Regex regex = new Regex("\\d+");
-                                Match service_result = regex.Match(ConvertedBinding);
-                                ServicePortBox_NetTcp.Text = service_result.Value;
+                                Match rest_result = regex.Match(ConvertedBinding);
+                                RestPortBox.Text = rest_result.Value;
                             }
-                            else
+                        }
+                        if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == WebPath)
+                        {
+                            WebSiteBox.Text = site.Name;
+                            foreach (var binding in site.Bindings)
                             {
+                                WebPortBox.Visibility = System.Windows.Visibility.Visible;
                                 string ConvertedBinding = binding.BindingInformation;
                                 Regex regex = new Regex("\\d+");
-                                Match service_result = regex.Match(ConvertedBinding);
-                                ServicePortBox_Http.Text = service_result.Value;
+                                Match web_result = regex.Match(ConvertedBinding);
+                                WebPortBox.Text = web_result.Value;
                             }
                         }
                     }
-                    if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == RestPath)
-                    {
-                        RestSiteBox.Text = site.Name;
-                        foreach (var binding in site.Bindings)
-                        {
-                            RestPortBox.Visibility = System.Windows.Visibility.Visible;
-                            string ConvertedBinding = binding.BindingInformation;
-                            Regex regex = new Regex("\\d+");
-                            Match rest_result = regex.Match(ConvertedBinding);
-                            RestPortBox.Text = rest_result.Value;
-                        }
-                    }
-                    if (site.Applications["/"].VirtualDirectories["/"].PhysicalPath == WebPath)
-                    {
-                        WebSiteBox.Text = site.Name;
-                        foreach (var binding in site.Bindings)
-                        {
-                            WebPortBox.Visibility = System.Windows.Visibility.Visible;
-                            string ConvertedBinding = binding.BindingInformation;
-                            Regex regex = new Regex("\\d+");
-                            Match web_result = regex.Match(ConvertedBinding);
-                            WebPortBox.Text = web_result.Value;
-                        }
-                    }
-                }
                     else
-                {
+                    {
 
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("You need to run this app as administrator to use this option.", "Run as administrator", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         public void EditButton_Click(object sender, RoutedEventArgs e)
