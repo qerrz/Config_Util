@@ -19,7 +19,7 @@
         <Button x:Name="RunButton" Content="Run Application" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="RunButton_Click" IsEnabled="False"/>
         <TextBox x:Name="CMMSPath" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" RenderTransformOrigin="0.5,0.5" FontSize="18" ToolTip="Paste CMMS Path here then hit the Load button" Visibility="Collapsed" />
         <ComboBox x:Name="CMMSPathCombo" Grid.Column="1" HorizontalAlignment="Left" Margin="130,13,0,0" VerticalAlignment="Top" Width="359" Height="29" FontSize="16" Visibility="Collapsed"/>
-        <Label x:Name="label" Content="CMMS Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" />
+        <Label x:Name="label" Content="CMMS Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" MouseDoubleClick="label_MouseDoubleClick" />
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="484" Margin="175,12,0,-61" VerticalAlignment="Top" Width="1" Cursor="Arrow" RenderTransformOrigin="0.5,0.5">
             <GridSplitter.RenderTransform>
                 <TransformGroup>

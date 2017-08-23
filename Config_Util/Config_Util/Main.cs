@@ -50,6 +50,13 @@ namespace Config_Util
             }
 
         }
+        bool IsElevated
+        {
+            get
+            {
+                return new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
+            }
+        }
         public void LoadFilesButton_Click(object sender, RoutedEventArgs e)
 
         {
@@ -200,13 +207,7 @@ namespace Config_Util
             }
         }
 
-        bool IsElevated
-        {
-            get
-            {
-                return new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
-            }
-        }
+       
 
         private void IISDataButton_Click(object sender, RoutedEventArgs e)
         {
@@ -341,6 +342,10 @@ namespace Config_Util
             ProcessStartInfo start = new ProcessStartInfo();
             start.FileName = ExePath;
             Process.Start(start);
+        }
+        private void label_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Clipboard.SetText("Admin" + VersionBox.Text);
         }
     }
 }
