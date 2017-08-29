@@ -98,7 +98,8 @@
                     <Label x:Name="DBAddressLabel" Content="" HorizontalAlignment="Left" Margin="10,246,0,0" VerticalAlignment="Top" Width="127"/>
                     <Label x:Name="DBLabelInfo2" Content="Name:" HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top" Width="127"/>
                     <Label x:Name="DBNameLabel" Content="" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Width="127"/>
-                    <Label x:Name="DBLabelInfo3" Content="Connected to database" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Width="127"/>
+                    <Label x:Name="DBLabelInfo3" Content="Connected to database" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Width="139"/>
+                    <Button x:Name="CloseConnectionButton" Content="End Connection" HorizontalAlignment="Left" Margin="10,135,0,0" VerticalAlignment="Top" Width="127" Height="29" Click="CloseConnectionButton_Click" />
 
                 </Grid>
             </TabItem>

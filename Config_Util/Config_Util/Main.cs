@@ -26,6 +26,7 @@ namespace Config_Util
         bool EditFlag = false;
         bool ComboAsSource = false;
         bool PathAsSource = false;
+
         string IsPredefined = System.Configuration.ConfigurationManager.AppSettings["IsPredefined"];
         public MainWindow()
         {
@@ -344,16 +345,24 @@ namespace Config_Util
         {
             Clipboard.SetText("Admin" + VersionBox.Text);
         }
+        /* DECLARATION OF NEW SQL CONNECTION ISNTANCE */
+        SqlConnection Connection = new SqlConnection();
         private void LoadDBButton_Click(object sender, RoutedEventArgs e)
         {
-            ConnectionString = "metadata=res://*/RrmDBModel.csdl|res://*/RrmDBModel.ssdl|res://*/RrmDBModel.msl;provider=System.Data.SqlClient;provider connection string=\"data source=" + AddressBox.Text + ";initial catalog=" + NameBox.Text + ";persist security info=True;user id=" + LoginBox.Text + ";password=" + PasswordBox.Text + ";MultipleActiveResultSets=True;App=EntityFramework\"";
-            SqlConnection Connection = new SqlConnection(ConnectionString);
+            string DBModuleConnectionString = "Server=" + AddressBox.Text + ";Database=" + NameBox.Text + ";User ID=" + LoginBox.Text + ";Password=" + PasswordBox.Text + ";";
+            Connection.ConnectionString = DBModuleConnectionString;
             Connection.Open();
-
+            string ConnectionStatus = Connection.State.ToString();
+            SQLTab.IsEnabled = true;
+            SQLTab.Focus();
+            DBAddressLabel.Content = AddressBox.Text;
+            DBNameLabel.Content = NameBox.Text;
+            CMMSPath.IsEnabled = false;
+            CMMSPathCombo.IsEnabled = false;
         }
         private void LoadSettingsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
         private void SetSettingsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -362,6 +371,14 @@ namespace Config_Util
         private void ClearBinButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void CloseConnectionButton_Click(object sender, RoutedEventArgs e)
+        {
+            Connection.Close();
+            BasicTab.Focus();
+            SQLTab.IsEnabled = false;
+            CMMSPath.IsEnabled = true;
+            CMMSPathCombo.IsEnabled = true;
         }
     }
 }
