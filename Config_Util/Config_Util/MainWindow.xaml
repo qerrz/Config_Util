@@ -15,7 +15,7 @@
         <Button x:Name="LoadFilesButton" Content="Load CMMS Catalogue" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="LoadFilesButton_Click" ToolTip="Load CMMS information for further processing"/>
         <Button x:Name="EditButton" Content="Edit Connection Data" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Modify connection string of given CMMS instance" Click="EditButton_Click"/>
         <Button x:Name="IISDataButton" Content="Load IIS Websites" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Loads IIS Websites associated with preset paths" Click="IISDataButton_Click"/>
-        <Button x:Name="LoadDBButton" Content="Load Database Module" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False"/>
+        <Button x:Name="LoadDBButton" Content="Load Database Module" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" Click="LoadDBButton_Click"/>
         <Button x:Name="RunButton" Content="Run Application" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="RunButton_Click" IsEnabled="False"/>
         <TextBox x:Name="CMMSPath" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" RenderTransformOrigin="0.5,0.5" FontSize="18" ToolTip="Paste CMMS Path here then hit the Load button" Visibility="Collapsed" />
         <ComboBox x:Name="CMMSPathCombo" Grid.Column="1" HorizontalAlignment="Left" Margin="130,13,0,0" VerticalAlignment="Top" Width="359" Height="29" FontSize="16" Visibility="Collapsed"/>
@@ -85,8 +85,25 @@
 
                 </Grid>
             </TabItem>
+            <TabItem x:Name="SQLTab" Header="SQL" IsEnabled="False">
+                <Grid Background="Transparent">
+                    <ListBox x:Name="ListBoxLeft" HorizontalAlignment="Left" Height="295" Margin="180,37,0,0" VerticalAlignment="Top" Width="195" Visibility="Collapsed"/>
+                    <ListBox x:Name="ListBoxRight" HorizontalAlignment="Left" Height="295" Margin="400,37,0,0" VerticalAlignment="Top" Width="187" Visibility="Collapsed"/>
+                    <Button x:Name="LoadSettingsButton" Content="Load App Settings" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="127" Height="29" Click="LoadSettingsButton_Click"/>
+                    <Button x:Name="SetSettingsButton" Content="Set New Settings" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="127" Height="29" Click="SetSettingsButton_Click"/>
+                    <Button x:Name="ClearBinButton" Content="Clear Bin Settings" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="127" Height="29" Click="ClearBinButton_Click"/>
+                    <Label x:Name="LeftDBLabel" Content="" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label x:Name="RightDBLabel" Content="" HorizontalAlignment="Left" Margin="400,10,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label x:Name="DBLabelInfo1" Content="Address:" HorizontalAlignment="Left" Margin="10,219,0,0" VerticalAlignment="Top" Width="127"/>
+                    <Label x:Name="DBAddressLabel" Content="" HorizontalAlignment="Left" Margin="10,246,0,0" VerticalAlignment="Top" Width="127"/>
+                    <Label x:Name="DBLabelInfo2" Content="Name:" HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top" Width="127"/>
+                    <Label x:Name="DBNameLabel" Content="" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Width="127"/>
+                    <Label x:Name="DBLabelInfo3" Content="Connected to database" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Width="127"/>
+
+                </Grid>
+            </TabItem>
         </TabControl>
-        
+
 
     </Grid>
 </Window>

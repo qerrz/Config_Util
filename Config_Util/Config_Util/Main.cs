@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Web.Administration;
 using System.Diagnostics;
 using System.Security.Principal;
-using System.Threading;
+using System.Data.SqlClient;
 
 namespace Config_Util
 {
@@ -22,7 +22,7 @@ namespace Config_Util
         string RestPath = string.Empty;
         string WebPath = string.Empty;
         string ClientPath = string.Empty;
-        //string CMMSTestingPath = "C:\\Queris\\CMMS - Testing";
+        string ConnectionString = string.Empty;
         bool EditFlag = false;
         bool ComboAsSource = false;
         bool PathAsSource = false;
@@ -60,7 +60,6 @@ namespace Config_Util
         public void LoadFilesButton_Click(object sender, RoutedEventArgs e)
 
         {
-            // CMMSPath.Text = "C:\\Queris\\CMMS - Testing";
             bool GetServiceFail = false;
             string CMMSPathVar = string.Empty;
             LoadFilesButton.Content = "Loading...";
@@ -76,7 +75,6 @@ namespace Config_Util
             {
                 MessageBox.Show("Enter CMMS Path first!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 LoadFilesButton.Content = "Load CMMS Catalogue";
-                //CMMSPath.Text = CMMSTestingPath;
             }
             else
             {
@@ -193,7 +191,7 @@ namespace Config_Util
                         VersionBox.Text = ClientVersion;
                         IISDataButton.IsEnabled = true;
                         EditButton.IsEnabled = true;
-                        //LoadDBButton.IsEnabled = true;
+                        LoadDBButton.IsEnabled = true;
                         RunButton.IsEnabled = true;
                         LoadFilesButton.Content = "Reload CMMS Catalogue";
                     }
@@ -297,7 +295,6 @@ namespace Config_Util
             /* BUTTON IN SAVE MODE */
             else if (EditFlag == true)
             {
-                string ConnectionString = string.Empty;
                 /* GENERATE NEW CONNECTIONSTRING */
                 ConnectionString = "metadata=res://*/RrmDBModel.csdl|res://*/RrmDBModel.ssdl|res://*/RrmDBModel.msl;provider=System.Data.SqlClient;provider connection string=\"data source=" + AddressBox.Text + ";initial catalog=" + NameBox.Text + ";persist security info=True;user id=" + LoginBox.Text + ";password=" + PasswordBox.Text + ";MultipleActiveResultSets=True;App=EntityFramework\"";
                 /* BEGIN SAVING DOCUMENTS */
@@ -346,6 +343,25 @@ namespace Config_Util
         private void label_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Clipboard.SetText("Admin" + VersionBox.Text);
+        }
+        private void LoadDBButton_Click(object sender, RoutedEventArgs e)
+        {
+            ConnectionString = "metadata=res://*/RrmDBModel.csdl|res://*/RrmDBModel.ssdl|res://*/RrmDBModel.msl;provider=System.Data.SqlClient;provider connection string=\"data source=" + AddressBox.Text + ";initial catalog=" + NameBox.Text + ";persist security info=True;user id=" + LoginBox.Text + ";password=" + PasswordBox.Text + ";MultipleActiveResultSets=True;App=EntityFramework\"";
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            Connection.Open();
+
+        }
+        private void LoadSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void SetSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void ClearBinButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
