@@ -12,12 +12,15 @@
             <ColumnDefinition Width="183*"/>
             <ColumnDefinition Width="641*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="LoadFilesButton" Content="Load CMMS Catalogue" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="LoadFilesButton_Click" ToolTip="Load CMMS information for further processing"/>
-        <Button x:Name="EditButton" Content="Edit Connection Data" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Modify connection string of given CMMS instance" Click="EditButton_Click"/>
-        <Button x:Name="IISDataButton" Content="Load IIS Websites" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Loads IIS Websites associated with preset paths" Click="IISDataButton_Click"/>
-        <Button x:Name="LoadDBButton" Content="Load Database Module" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" Click="LoadDBButton_Click"/>
-        <Button x:Name="RunButton" Content="Run Application" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="RunButton_Click" IsEnabled="False"/>
+        <Button x:Name="LoadFilesButton" Content="Load CMMS Catalogue" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="LoadFilesButton_Click" ToolTip="Load CMMS information for further processing"/>
+        <Button x:Name="EditButton" Content="Edit Connection Data" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Modify connection string of given CMMS instance" Click="EditButton_Click"/>
+        <Button x:Name="IISDataButton" Content="Load IIS Websites" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" ToolTip="Loads IIS Websites associated with preset paths" Click="IISDataButton_Click"/>
+        <Button x:Name="LoadDBButton" Content="Load Database Module" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top" Width="151" Height="32" IsEnabled="False" Click="LoadDBButton_Click"/>
+        <Button x:Name="RunButton" Content="Run Application" HorizontalAlignment="Left" Margin="10,367,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="RunButton_Click" IsEnabled="False"/>
+        <Button x:Name="CheckUpdateButton" Content="Check for RC update" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="CheckUpdateButton_Click" IsEnabled="False"/>
+        <Button x:Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" Width="151" Height="32" Click="UpdateButton_Click" IsEnabled="False"/>
         <TextBox x:Name="CMMSPath" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359" RenderTransformOrigin="0.5,0.5" FontSize="18" ToolTip="Paste CMMS Path here then hit the Load button" Visibility="Collapsed" />
+        <TextBlock x:Name="NewVersionLabel" HorizontalAlignment="Left" Margin="10,316,0,0" TextWrapping="WrapWithOverflow" Text="" VerticalAlignment="Top" Height="46" Width="151"/>
         <ComboBox x:Name="CMMSPathCombo" Grid.Column="1" HorizontalAlignment="Left" Margin="130,13,0,0" VerticalAlignment="Top" Width="359" Height="29" FontSize="16" Visibility="Collapsed"/>
         <Label x:Name="label" Content="CMMS Path:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="115" FontSize="16" MouseDoubleClick="label_MouseDoubleClick" />
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="484" Margin="175,12,0,-61" VerticalAlignment="Top" Width="1" Cursor="Arrow" RenderTransformOrigin="0.5,0.5">
@@ -104,7 +107,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-
-
-    </Grid>
+       </Grid>
 </Window>

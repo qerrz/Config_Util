@@ -6,6 +6,9 @@ using Microsoft.Web.Administration;
 using System.Diagnostics;
 using System.Security.Principal;
 using System.Data.SqlClient;
+using System.Data;
+using System.Collections.Generic;
+using System.Net;
 
 namespace Config_Util
 {
@@ -23,6 +26,10 @@ namespace Config_Util
         string WebPath = string.Empty;
         string ClientPath = string.Empty;
         string ConnectionString = string.Empty;
+        string SourcePath = string.Empty;
+        string DestintantionPath = string.Empty;
+        string ServiceTempPath = string.Empty;
+        string NewestVersion = string.Empty;
         bool EditFlag = false;
         bool ComboAsSource = false;
         bool PathAsSource = false;
@@ -31,10 +38,12 @@ namespace Config_Util
         public MainWindow()
         {
             InitializeComponent();
+            /* CHECK FOR APP.CONFIG PREDEFINED PATHS */
             if (IsPredefined == "1")
             {
                 CMMSPathCombo.Visibility = System.Windows.Visibility.Visible;
                 ComboAsSource = true;
+                /* GETS PREDEFINED PATHS FROM APP.CONFIG AND POPULATES COMBOBOX WITH THEM */
                 foreach (string key in System.Configuration.ConfigurationManager.AppSettings.AllKeys)
                 {
                     if (key.StartsWith("CMMS"))
@@ -42,6 +51,16 @@ namespace Config_Util
                         string value = System.Configuration.ConfigurationManager.AppSettings[key];
                         CMMSPathCombo.Items.Add(value);
                     }
+                }
+                /* */
+                if (CMMSPathCombo.Items.Count < 0)
+                {
+                    MessageBox.Show("No directory to choose. Check app.config.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Environment.Exit(0);
+                }
+                else
+                {
+                    CMMSPathCombo.SelectedIndex = 0;
                 }
             }
             else
@@ -58,6 +77,7 @@ namespace Config_Util
                 return new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
             }
         }
+
         public void LoadFilesButton_Click(object sender, RoutedEventArgs e)
 
         {
@@ -71,10 +91,10 @@ namespace Config_Util
             else if (ComboAsSource == true)
             {
                 CMMSPathVar = CMMSPathCombo.SelectedItem.ToString();
+
             }
             if (string.IsNullOrEmpty(CMMSPathVar))
             {
-                MessageBox.Show("Enter CMMS Path first!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 LoadFilesButton.Content = "Load CMMS Catalogue";
             }
             else
@@ -98,6 +118,7 @@ namespace Config_Util
                         ServicePath = NewServicePath;
                         ServiceBox.Text = NewServicePath;
                         ServiceConfigPath = NewServicePath + "\\Web.config";
+                        ServiceTempPath = NewServicePath + "\\Temp";
                         GetServiceSuccess = true;
                     }
                     else if (Directory.Exists(OldServicePath))
@@ -105,6 +126,7 @@ namespace Config_Util
                         ServicePath = OldServicePath;
                         ServiceBox.Text = OldServicePath;
                         ServiceConfigPath = OldServicePath + "\\Web.config";
+                        ServiceTempPath = OldServicePath + "\\Temp";
                         GetServiceSuccess = true;
                     }
                     else
@@ -194,6 +216,7 @@ namespace Config_Util
                         EditButton.IsEnabled = true;
                         LoadDBButton.IsEnabled = true;
                         RunButton.IsEnabled = true;
+                        CheckUpdateButton.IsEnabled = true;
                         LoadFilesButton.Content = "Reload CMMS Catalogue";
                     }
                 }
@@ -206,13 +229,12 @@ namespace Config_Util
             }
         }
 
-       
+
 
         private void IISDataButton_Click(object sender, RoutedEventArgs e)
         {
-            if (IsElevated == true)
-            { 
-           
+            try
+            {
                 IISTab.IsEnabled = true;
                 IISTab.Focus();
                 ServerManager ServerMgr = new ServerManager();
@@ -272,15 +294,19 @@ namespace Config_Util
                     }
                 }
             }
-            else
+
+            catch
             {
-                MessageBox.Show("You need to run this app as administrator to use this option.", "Run as administrator", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("App requires elevation to access IIS Services.", "Run as administrator", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+    
+
+    
         public void EditButton_Click(object sender, RoutedEventArgs e)
         {
             /* BUTTON NOT IN SAVE MODE */
-            if (EditFlag == false)
+                if (EditFlag == false)
             {
                 /* SET FOCUS, UNLOCK BOXES, LOCK APP - SET SAVE MODE */
                 EditFlag = true;
@@ -296,38 +322,7 @@ namespace Config_Util
             /* BUTTON IN SAVE MODE */
             else if (EditFlag == true)
             {
-                /* GENERATE NEW CONNECTIONSTRING */
-                ConnectionString = "metadata=res://*/RrmDBModel.csdl|res://*/RrmDBModel.ssdl|res://*/RrmDBModel.msl;provider=System.Data.SqlClient;provider connection string=\"data source=" + AddressBox.Text + ";initial catalog=" + NameBox.Text + ";persist security info=True;user id=" + LoginBox.Text + ";password=" + PasswordBox.Text + ";MultipleActiveResultSets=True;App=EntityFramework\"";
-                /* BEGIN SAVING DOCUMENTS */
-                XmlDocument ServiceFile = new XmlDocument();
-                XmlDocument RestFile = new XmlDocument();
-                XmlDocument WebFile = new XmlDocument();
-                /* LOAD DOCUMENTS */
-                ServiceFile.Load(ServiceConfigPath);
-                RestFile.Load(RestConfigPath);
-                WebFile.Load(WebConfigPath);
-                /* SELECT NODES */
-                XmlNode ServiceConnStringNode = ServiceFile.SelectSingleNode("/configuration/connectionStrings/add");
-                XmlNode RestFileNode = RestFile.SelectSingleNode("/configuration/connectionStrings/add");
-                XmlNode WebFileNode = WebFile.SelectSingleNode("/configuration/connectionStrings/add");
-                /* CHANGE NODES */
-                ServiceConnStringNode.Attributes["connectionString"].Value = ConnectionString;
-                RestFileNode.Attributes["connectionString"].Value = ConnectionString;
-                WebFileNode.Attributes["connectionString"].Value = ConnectionString;
-                /* SAVE FILES */
-                ServiceFile.Save(ServiceConfigPath);
-                RestFile.Save(RestConfigPath);
-                WebFile.Save(WebConfigPath);
-                /* LOCK TEXTBOXES */
-                AddressBox.IsReadOnly = true;
-                NameBox.IsReadOnly = true;
-                LoginBox.IsReadOnly = true;
-                PasswordBox.IsReadOnly = true;
-                /* UNLOCK APP - END SAVE MODE */
-                EditFlag = false;
-                EditButton.Content = "Edit Connection Data";
-                IISTab.IsEnabled = true;
-                FilesTab.IsEnabled = true;
+                
             }
             else
             {
@@ -351,18 +346,36 @@ namespace Config_Util
         {
             string DBModuleConnectionString = "Server=" + AddressBox.Text + ";Database=" + NameBox.Text + ";User ID=" + LoginBox.Text + ";Password=" + PasswordBox.Text + ";";
             Connection.ConnectionString = DBModuleConnectionString;
-            Connection.Open();
+            try
+            {
+                Connection.Open();
+            }
+            catch
+            {
+                MessageBox.Show("Could not establish connection to a DataBase", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             string ConnectionStatus = Connection.State.ToString();
             SQLTab.IsEnabled = true;
             SQLTab.Focus();
             DBAddressLabel.Content = AddressBox.Text;
             DBNameLabel.Content = NameBox.Text;
+            EditButton.IsEnabled = false;
             CMMSPath.IsEnabled = false;
             CMMSPathCombo.IsEnabled = false;
         }
         private void LoadSettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            int i = 0;
+            string LoadSettingsCommand = "SELECT [Nazwa], [Wartosc] FROM dbo.UstawieniaAplikacji WHERE Id in (1,6,17,23,25,46,53)";
+            SqlCommand LoadSettingsQuery = new SqlCommand(LoadSettingsCommand, Connection);
+            SqlDataAdapter SettingsDataAdapter = new SqlDataAdapter();
+            DataSet SettingsDataSet = new DataSet();
+            SettingsDataAdapter.SelectCommand = LoadSettingsQuery;
+            SettingsDataAdapter.Fill(SettingsDataSet);
+            for (i = 0; i <= SettingsDataSet.Tables[0].Rows.Count - 1; i++)
+            {
+               
+            }
         }
         private void SetSettingsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -380,5 +393,55 @@ namespace Config_Util
             CMMSPath.IsEnabled = true;
             CMMSPathCombo.IsEnabled = true;
         }
+        private void CheckUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            /* sprawdza dostępność wersji na serwerze queris 57 */
+            string RCDir = "\\\\queris57\\Builds\\RRM3 Release Candidate";
+            List<string> Directories = new List<string>(Directory.EnumerateDirectories(RCDir));
+            Regex DirRegex = new Regex("RRM3_.+");
+            for (int i = 0; i < Directories.Count; i++)
+            {
+                string DirToRegex = Directories[i];
+                Match DirRegexMatch = DirRegex.Match(DirToRegex);
+                Directories[i] = DirRegexMatch.ToString();
+            }
+            NewestVersion = Directories[(Directories.Count-1)];
+            if (NewestVersion != VersionBox.Text)
+            {
+                NewVersionLabel.Text = "Version " + NewestVersion + " is available for update.";
+                if (Directory.Exists(ServiceTempPath + "\\" + NewestVersion))
+                {
+                    UpdateButton.IsEnabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("There is new version available on queris57. Please download manually.", "Update has been canceled.", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else if (NewestVersion == VersionBox.Text)
+            {
+                NewVersionLabel.Text = "This version is up to date";
+                UpdateButton.IsEnabled = false;
+            }
+            else
+            {
+                UpdateButton.IsEnabled = false;
+                NewVersionLabel.Text = "System Failure. System Failure. System Failure. System Failure. System Failure. System Failure. System Failure. System Failure. System Failure. System Failure. System Failure. System Failure. System Failure. System Failure. ";
+            }
+        }
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (MessageBox.Show("Are you sure you want to update to newer RC version?", "Update", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                foreach (string newPath in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
+                    File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true);
+            }
+            else
+            {
+                MessageBox.Show("Update has been cancelled by user.", "Update has been canceled.", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
     }
 }
